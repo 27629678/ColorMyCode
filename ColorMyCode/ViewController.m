@@ -8,22 +8,72 @@
 
 #import "ViewController.h"
 
+#import <JavaScriptCore/JavaScriptCore.h>
+
 @interface ViewController ()
+
+@property (nonatomic, strong) JSContext *context;
+
+@property (weak, nonatomic) IBOutlet UITextView *textview;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.textview.text = [ViewController originTextViewText];
+    
+    // load java script
+    [self.context evaluateScript:[ViewController originJavaScriptString]];
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction)reloadBtnAction:(id)sender
+{
+    
 }
 
+#pragma mark - private
+
+
+
+#pragma mark - getter & setter
+
+- (JSContext *)context
+{
+    if (!_context) {
+        _context = [JSContext new];
+    }
+    
+    return _context;
+}
+
+#pragma mark - static resources
+
++ (NSString *)originJavaScriptString
+{
+    static NSString *javascript = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"js"];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        javascript = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    });
+    
+    return javascript;
+}
+
++ (NSString *)originTextViewText
+{
+    static NSString *text = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        text = @"The quick brown fox jumped over the lazy red dog to eat the yellow hen in the blue coop.";
+    });
+    
+    return text;
+}
 
 @end
