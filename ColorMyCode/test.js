@@ -8,11 +8,11 @@ colors.originColorMap = {
 
 colors.colorForWord = function (word) {
     var w = word.toLowerCase();
+    ddlog.debug('word: ' + w);
+    // return word;
 
-    return word;
-
-    if (colors.originColorMap[w]) {
-        return null;
+    if (!colors.originColorMap[w]) {
+        return;
     }
 
     return colors.originColorMap[w];

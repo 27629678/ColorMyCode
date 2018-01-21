@@ -26,8 +26,6 @@
 {
     [super viewDidLoad];
     
-    self.textview.text = [ViewController originTextViewText];
-    
     // exception handler
     self.context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         NSLog(@"[Exception]: %@", exception);
@@ -36,18 +34,57 @@
     // load java script
     [self.context evaluateScript:[ViewController originJavaScriptString]];
     [self.context evaluateScript:@"colors.greeting()"];
+    
+    self.textview.attributedText = [self attributedString:[ViewController originTextViewText]];
 }
 
 - (IBAction)reloadBtnAction:(id)sender
 {
-    
+    self.textview.attributedText = [self attributedString:self.textview.text];
 }
 
 #pragma mark - private
 
-- (NSAttributedString *)attributedString
+- (NSAttributedString *)attributedString:(NSString *)raw
 {
-    return nil;
+    NSArray *components =
+    [raw componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:raw];
+    [text addAttribute:NSFontAttributeName
+                 value:[UIFont systemFontOfSize:22]
+                 range:NSMakeRange(0, text.length)];
+    
+    for (NSString *item in components) {
+        UIColor *color = [self colorForWord:item];
+        if (!color) {
+            continue;
+        }
+        
+        NSRange range = [raw rangeOfString:item];
+        if (range.location == NSNotFound) {
+            continue;
+        }
+        
+        [text addAttribute:NSForegroundColorAttributeName value:color range:range];
+    }
+    
+    return text.copy;
+}
+
+- (UIColor *)colorForWord:(NSString *)word
+{
+    NSString *script = [NSString stringWithFormat:@"colors.colorForWord('%@');", word];
+    NSDictionary *c = [self.context evaluateScript:script].toDictionary;
+    
+    if (c.count == 0) {
+        return [UIColor blackColor];
+    }
+    
+    CGFloat r = [c[@"r"] floatValue]/255.f;
+    CGFloat g = [c[@"g"] floatValue]/255.f;
+    CGFloat b = [c[@"b"] floatValue]/255.f;
+    
+    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
 }
 
 #pragma mark - getter & setter
