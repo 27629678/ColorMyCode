@@ -26,8 +26,15 @@
     
     self.textview.text = [ViewController originTextViewText];
     
+    // exception handler
+    self.context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        NSLog(@"[Exception]: %@", exception);
+    };
+    
     // load java script
     [self.context evaluateScript:[ViewController originJavaScriptString]];
+    
+    NSLog(@"%@", [self.context evaluateScript:@"colors.greeting()"].toString);
 }
 
 - (IBAction)reloadBtnAction:(id)sender
@@ -37,7 +44,10 @@
 
 #pragma mark - private
 
-
+- (NSAttributedString *)attributedString
+{
+    return nil;
+}
 
 #pragma mark - getter & setter
 
