@@ -19,5 +19,5 @@ colors.colorForWord = function (word) {
 };
 
 colors.greeting = function () {
-    return "-- <js module load finished>";
+    ddlog.debug('import test module successfully.');
 }

@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+#import "DDLog.h"
+
 #import <JavaScriptCore/JavaScriptCore.h>
 
 @interface ViewController ()
@@ -33,8 +35,7 @@
     
     // load java script
     [self.context evaluateScript:[ViewController originJavaScriptString]];
-    
-    NSLog(@"%@", [self.context evaluateScript:@"colors.greeting()"].toString);
+    [self.context evaluateScript:@"colors.greeting()"];
 }
 
 - (IBAction)reloadBtnAction:(id)sender
@@ -55,6 +56,9 @@
 {
     if (!_context) {
         _context = [JSContext new];
+        _context[@"ddlog"] = [DDLog class];
+        
+        NSLog(@"%@", [_context evaluateScript:@"ddlog.debug('ddlog module installed.')"].toString);
     }
     
     return _context;
