@@ -20,4 +20,9 @@ colors.colorForWord = function (word) {
 
 colors.greeting = function () {
     ddlog.debug('import test module successfully.');
-}
+};
+
+colors.printPerson = function(person) {
+    ddlog.debug("name: " + person.name + ", age: " + person.age);
+    ddlog.debug(NEBundle.contentWithName("test.js"));
+};

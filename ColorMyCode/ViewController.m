@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 #import "DDLog.h"
+#import "Person.h"
+#import "NEBundle.h"
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
@@ -36,6 +38,13 @@
     [self.context evaluateScript:@"colors.greeting()"];
     
     self.textview.attributedText = [self attributedString:[ViewController originTextViewText]];
+    
+    Person *p = [Person new];
+    p.name = @"demo";
+    p.age = 10;
+    
+    JSValue *function = self.context[@"colors"][@"printPerson"];
+    [function callWithArguments:@[p]];
 }
 
 - (IBAction)reloadBtnAction:(id)sender
@@ -94,6 +103,7 @@
     if (!_context) {
         _context = [JSContext new];
         _context[@"ddlog"] = [DDLog class];
+        _context[@"NEBundle"] = [NEBundle class];
         
         NSLog(@"%@", [_context evaluateScript:@"ddlog.debug('ddlog module installed.')"].toString);
     }

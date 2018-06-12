@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA1466FE20CFC4E200857AB3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = DA1466FD20CFC4E200857AB3 /* Person.m */; };
+		DA14670120CFCCBF00857AB3 /* NEBundle.m in Sources */ = {isa = PBXBuildFile; fileRef = DA14670020CFCCBF00857AB3 /* NEBundle.m */; };
 		DA49027D2014950A0075F5DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49027C2014950A0075F5DF /* AppDelegate.m */; };
 		DA4902802014950A0075F5DF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA49027F2014950A0075F5DF /* ViewController.m */; };
 		DA4902832014950A0075F5DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA4902812014950A0075F5DF /* Main.storyboard */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA1466FC20CFC4E200857AB3 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		DA1466FD20CFC4E200857AB3 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		DA1466FF20CFCCBF00857AB3 /* NEBundle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NEBundle.h; sourceTree = "<group>"; };
+		DA14670020CFCCBF00857AB3 /* NEBundle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NEBundle.m; sourceTree = "<group>"; };
 		DA4902782014950A0075F5DF /* ColorMyCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorMyCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA49027B2014950A0075F5DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DA49027C2014950A0075F5DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -75,6 +81,10 @@
 				DA4902862014950A0075F5DF /* LaunchScreen.storyboard */,
 				DA4902892014950A0075F5DF /* Info.plist */,
 				DA49028A2014950A0075F5DF /* main.m */,
+				DA1466FC20CFC4E200857AB3 /* Person.h */,
+				DA1466FD20CFC4E200857AB3 /* Person.m */,
+				DA1466FF20CFCCBF00857AB3 /* NEBundle.h */,
+				DA14670020CFCCBF00857AB3 /* NEBundle.m */,
 			);
 			path = ColorMyCode;
 			sourceTree = "<group>";
@@ -153,7 +163,9 @@
 			files = (
 				DA4902952014A88A0075F5DF /* DDLog.m in Sources */,
 				DA4902802014950A0075F5DF /* ViewController.m in Sources */,
+				DA1466FE20CFC4E200857AB3 /* Person.m in Sources */,
 				DA49028B2014950A0075F5DF /* main.m in Sources */,
+				DA14670120CFCCBF00857AB3 /* NEBundle.m in Sources */,
 				DA49027D2014950A0075F5DF /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
